@@ -27,7 +27,6 @@ function addSite() {
     localStorage.setItem("sites", JSON.stringify(siteList));
     showData();
     clearInputs();
-
   } else {
     console.log("err");
     alertBox.classList.replace("d-none" , "d-block");
@@ -62,13 +61,11 @@ function showData() {
                   <td>${i + 1}</td>
                   <td>${siteList[i].siteName}</td>
                   <td>
-                    <button class="btn btn-outline-info px-0 py-0">
-                        <a class="px-3 py-1 rounded" href="${
-                          siteList[i].siteUrl
-                        }" target="_blank">Visit</a>
+                    <button class="btn btn-outline-info py-1">
+                        <a href="${siteList[i].siteUrl}" target="_blank">Visit</a>
                     </button>
                   </td>
-                  <td><button class="btn btn-outline-danger py-1" onclick="delSite(${i})">Delete</button></td>
+                  <td><button class="btn btn-danger py-1" onclick="delSite(${i})">Delete</button></td>
                   <td><button class="btn btn-outline-warning py-1" onclick="setDataToEdit(${i})">Edit</button></td>
                 </tr>
     
@@ -122,7 +119,7 @@ function Validation(el) {
   var regex = {
     bookmarkName: /^\w{1,8}$/,
     siteUrl:
-      /^((https?\:\/\/)?(www\.)?)?[a-zA-Z0-9]{1,}(\.[a-zA-Z0-9]{2,})(\/?.{2,})?$/gm,
+      /^((https?\:\/\/)?(www\.)?)?.{1,}(\.[a-zA-Z0-9]{2,})(\/?.{2,})?$/gm,
   };
   if (regex[el.id].test(el.value)) {
     el.classList.add("is-valid");

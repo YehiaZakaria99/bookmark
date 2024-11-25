@@ -2,9 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="CRUD" />
+    <meta
+      name="description"
+      content="Explore a curated collection of useful websites with this bookmark manager. Easily organize and access your favorite online resources for productivity, learning, and entertainment."
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./imgs/bookmark.png">
+    <link rel="icon" href="./imgs/bookmark.png" />
     <title>Bookmark</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,34 +26,44 @@
   <body class="">
     <main>
       <section class="bookmark position-relative">
-        <div class="z-1 bg-dark bg-opacity-25 position-absolute w-100 h-100 d-flex justify-content-center align-items-center d-none" id="alertBox">
-            <div class="alert bg-white p-4">
-              <div class="icons d-flex justify-content-between align-items-center mb-3">
-                <div class="circles">
-                  <i class="fa-solid fa-circle text-danger"></i>
-                  <i class="fa-solid fa-circle text-warning"></i>
-                  <i class="fa-solid fa-circle text-success"></i>
-                </div>
-                <div class="close">
-                  <button type="button" class="btn-close alert-close-btn" id="closeBtn" aria-label="Close"></button>
-                </div>
+        <div
+          class="z-1 bg-dark bg-opacity-25 position-absolute w-100 h-100 d-flex justify-content-center align-items-center d-none"
+          id="alertBox"
+        >
+          <div class="alert bg-white p-4">
+            <div
+              class="icons d-flex justify-content-between align-items-center mb-3"
+            >
+              <div class="circles">
+                <i class="fa-solid fa-circle text-danger"></i>
+                <i class="fa-solid fa-circle text-warning"></i>
+                <i class="fa-solid fa-circle text-success"></i>
               </div>
-              <div class="alert-msg mb-3">
-                <p class="fs-5 fw-bold">
-                  Site Name or Url is not valid, Please follow the rules below :
-                </p>
-                <ul class="list-unstyled">
-                  <li class="fs-18 mb-3">
-                    <i class="fa-regular fa-circle-right text-danger"></i>
-                    Site name must contain at least 1 character
-                  </li>
-                  <li class="fs-18">
-                    <i class="fa-regular fa-circle-right text-danger"></i>
-                    Site URL must be a valid one
-                  </li>
-                </ul>
+              <div class="close">
+                <button
+                  type="button"
+                  class="btn-close alert-close-btn"
+                  id="closeBtn"
+                  aria-label="Close"
+                ></button>
               </div>
             </div>
+            <div class="alert-msg mb-3">
+              <p class="fs-5 fw-bold">
+                Site Name or Url is not valid, Please follow the rules below :
+              </p>
+              <ul class="list-unstyled">
+                <li class="fs-18 mb-3">
+                  <i class="fa-regular fa-circle-right text-danger"></i>
+                  Site name must contain at least 1 character
+                </li>
+                <li class="fs-18">
+                  <i class="fa-regular fa-circle-right text-danger"></i>
+                  Site URL must be a valid one
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="container pt-5">
           <div class="header d-flex py-5">
@@ -64,7 +77,7 @@
                 Bookmark your favorite sites
               </h2>
             </div>
-            <div class="inputs w-75 mx-auto">
+            <div class="inputs w-75 mx-auto my-3">
               <div class="mb-3">
                 <i class="fa-solid fa-book-bookmark pe-2"></i>
                 <label for="bookmarkName" class="form-label fw-bold"
@@ -79,9 +92,7 @@
               </div>
               <div class="mb-3">
                 <i class="fa-solid fa-link pe-2"></i>
-                <label for="siteUrl" class="form-label fw-bold"
-                  >Site URL</label
-                >
+                <label for="siteUrl" class="form-label fw-bold">Site URL</label>
                 <input
                   type="text"
                   class="form-control bookmark-input py-2"
@@ -91,9 +102,21 @@
               </div>
               <div class="btn-box text-center py-2">
                 <!-- Submit -->
-                <button type="button" class="btn btn-success px-5 fw-bold" id="submitBtn">Submit</button>
+                <button
+                  type="button"
+                  class="btn btn-success px-5 fw-bold"
+                  id="submitBtn"
+                >
+                  Submit
+                </button>
                 <!-- Edit -->
-                <button type="button" class="btn btn-warning px-5 fw-bold d-none" id="editBtn">Edit</button>
+                <button
+                  type="button"
+                  class="btn btn-warning px-5 fw-bold d-none"
+                  id="editBtn"
+                >
+                  Edit
+                </button>
               </div>
             </div>
           </div>
@@ -108,9 +131,7 @@
                   <th>Edit</th>
                 </tr>
               </thead>
-              <tbody class="res-data" id="tBody">
-
-              </tbody>
+              <tbody class="res-data" id="tBody"></tbody>
             </table>
           </div>
         </div>
