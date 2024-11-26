@@ -14,30 +14,37 @@ if (localStorage.getItem("sites")) {
   showData();
 }
 
+function siteObj() {
+  var site = {
+    siteName: bookmarkName.value,
+    siteUrl: /^(https?:\/\/)/.test(siteUrl.value)
+      ? siteUrl.value
+      : `https://${siteUrl.value}`,
+  };
+  return site;
+}
+function siteLocalStorage() {
+  return localStorage.setItem("sites", JSON.stringify(siteList));
+}
 // Create Data and Push it To Array
 function addSite() {
   if (Validation(bookmarkName) && Validation(siteUrl)) {
-    var site = {
-      siteName: bookmarkName.value,
-      siteUrl: /^(https?:\/\/)/.test(siteUrl.value)
-        ? siteUrl.value
-        : `https://${siteUrl.value}`,
-    };
-    siteList.push(site);
-    localStorage.setItem("sites", JSON.stringify(siteList));
+    siteObj();
+    siteList.push(siteObj());
+    siteLocalStorage();
     showData();
     clearInputs();
   } else {
     console.log("err");
-    alertBox.classList.replace("d-none" , "d-block");
+    alertBox.classList.replace("d-none", "d-block");
   }
 }
-// close alert box 
-document.addEventListener("click", function(e){
-    if(e.target.id == "closeBtn" || e.target.id == "alertBox"){
-        alertBox.classList.replace("d-block" , "d-none");
-    }
-})
+// close alert box
+document.addEventListener("click", function (e) {
+  if (e.target.id == "closeBtn" || e.target.id == "alertBox") {
+    alertBox.classList.replace("d-block", "d-none");
+  }
+});
 
 // clear input
 function clearInputs() {
@@ -61,7 +68,9 @@ function showData() {
                   <td>${i + 1}</td>
                   <td>${siteList[i].siteName}</td>
                   <td>
-                    <a class="visit-btn d-block btn btn-outline-info py-1 px-1 mx-auto" href="${siteList[i].siteUrl}" target="_blank">
+                    <a class="visit-btn d-block btn btn-outline-info py-1 px-1 mx-auto" href="${
+                      siteList[i].siteUrl
+                    }" target="_blank">
                     <i class="fa-solid fa-eye pe-1"></i>
                     Visit
                     </a>
@@ -89,7 +98,7 @@ submitBtn.addEventListener("click", function (e) {
 // Delete Element
 function delSite(delIndex) {
   siteList.splice(delIndex, 1);
-  localStorage.setItem("sites", JSON.stringify(siteList));
+  siteLocalStorage();
   showData();
 }
 
@@ -102,19 +111,14 @@ function setDataToEdit(editIndex) {
   editBtn.classList.remove("d-none");
   scroll({
     top: 0,
-  })
+  });
   bookmarkName.focus();
 }
 
 function editSite(e) {
-  var site = {
-    siteName: bookmarkName.value,
-    siteUrl: /^(https?:\/\/)/.test(siteUrl.value)
-      ? siteUrl.value
-      : `https://${siteUrl.value}`,
-  };
-  siteList.splice(indexBox, 1, site);
-  localStorage.setItem("sites", JSON.stringify(siteList));
+  siteObj();
+  siteList.splice(indexBox, 1, siteObj());
+  siteLocalStorage();
   showData();
   submitBtn.classList.remove("d-none");
   editBtn.classList.add("d-none");
