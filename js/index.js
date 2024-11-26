@@ -61,12 +61,19 @@ function showData() {
                   <td>${i + 1}</td>
                   <td>${siteList[i].siteName}</td>
                   <td>
-                    <button class="btn btn-outline-info py-1">
-                        <a href="${siteList[i].siteUrl}" target="_blank">Visit</a>
-                    </button>
+                    <a class="visit-btn d-block btn btn-outline-info py-1 px-1 mx-auto" href="${siteList[i].siteUrl}" target="_blank">
+                    <i class="fa-solid fa-eye pe-1"></i>
+                    Visit
+                    </a>
                   </td>
-                  <td><button class="btn btn-danger py-1" onclick="delSite(${i})">Delete</button></td>
-                  <td><button class="btn btn-outline-warning py-1" onclick="setDataToEdit(${i})">Edit</button></td>
+                  <td><button class="btn btn-danger py-1" onclick="delSite(${i})">
+                  <i class="fa-solid fa-trash-can"></i>
+                  Delete
+                  </button></td>
+                  <td><button class="btn btn-outline-warning py-1" onclick="setDataToEdit(${i})">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  Edit
+                  </button></td>
                 </tr>
     
             `;
@@ -93,6 +100,10 @@ function setDataToEdit(editIndex) {
   indexBox = editIndex;
   submitBtn.classList.add("d-none");
   editBtn.classList.remove("d-none");
+  scroll({
+    top: 0,
+  })
+  bookmarkName.focus();
 }
 
 function editSite(e) {

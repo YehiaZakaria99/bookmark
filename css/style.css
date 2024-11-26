@@ -111,3 +111,7 @@ tr,th{
 td{
     color: var(--hover-color) !important;
 }
+
+.visit-btn{
+    width: 85px;
+}
