@@ -23,9 +23,36 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.min.css" />
   </head>
-  <body class="">
+  <body>
     <main>
       <section class="bookmark position-relative">
+        <div class="modal fade " id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-white px-1 py-2">
+              <div class="modal-header ">
+                <h5 class="modal-title fw-bold text-danger" id="exampleModalToggleLabel">URL Syntax Error</h5>
+                <button type="button" class="btn-close alert-close-btn" data-bs-dismiss="modal" aria-label="Close" id="closeBtn"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="alert-msg mb-3">
+                      <p class="fs-5 fw-bold">
+                          The URL you entered seems to be invalid, please ensure that:
+                      </p>
+                      <ul class="list-unstyled mb-0">
+                        <li class="fs-18 mb-3">
+                          <i class="fa-regular fa-circle-right text-danger me-2"></i>
+                          It starts with ('http://' or 'https://').
+                        </li>
+                        <li class="fs-18">
+                          <i class="fa-regular fa-circle-right text-danger me-2"></i>
+                          It includes a valid domain (e.g., 'example.com').
+                        </li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div
           class="z-1 bg-dark bg-opacity-25 position-absolute w-100 h-100 d-flex justify-content-center align-items-center d-none"
           id="alertBox"

@@ -4,9 +4,11 @@ var submitBtn = document.getElementById("submitBtn");
 var editBtn = document.getElementById("editBtn");
 var tBody = document.getElementById("tBody");
 var alertBox = document.getElementById("alertBox");
-
+var modal = document.getElementById("exampleModalToggle");
 var indexBox;
 
+// focus on siteName input onReload
+bookmarkName.focus();
 // Render Data To Page
 var siteList = [];
 if (localStorage.getItem("sites")) {
@@ -26,23 +28,17 @@ function siteObj() {
 function siteLocalStorage() {
   return localStorage.setItem("sites", JSON.stringify(siteList));
 }
-// Create Data and Push it To Array
-function addSite() {
-  if (Validation(bookmarkName) && Validation(siteUrl)) {
-    siteObj();
-    siteList.push(siteObj());
-    siteLocalStorage();
-    showData();
-    clearInputs();
-  } else {
-    console.log("err");
-    alertBox.classList.replace("d-none", "d-block");
-  }
-}
+
 // close alert box
 document.addEventListener("click", function (e) {
-  if (e.target.id == "closeBtn" || e.target.id == "alertBox") {
+  if (
+    e.target.id == "closeBtn" ||
+    e.target.id == "alertBox" ||
+    e.target.id == "exampleModalToggle"
+  ) {
     alertBox.classList.replace("d-block", "d-none");
+    modal.classList.remove("show");
+    modal.style.display = "none";
   }
 });
 
@@ -90,6 +86,32 @@ function showData() {
   tBody.innerHTML = tmp;
 }
 
+// Create Data and Push it To Array
+function addSite() {
+  if (validation(bookmarkName) && validation(siteUrl)) {
+    siteObj();
+    siteList.push(siteObj());
+    siteLocalStorage();
+    showData();
+    clearInputs();
+  } else {
+    notValid();
+  }
+}
+// Key events
+document.addEventListener("keydown", function (e) {
+  if (e.key == "Enter") {
+    submitBtn.classList.contains("d-none") ? editSite() : addSite();
+  }
+  if (e.key == "Escape") {
+    alertBox.classList.contains("d-block")
+      ? alertBox.classList.replace("d-block", "d-none")
+      : e.target.blur();
+    modal.classList.remove("show");
+    modal.style.display = "none";
+  }
+});
+
 // Create new element by clicking submit button
 submitBtn.addEventListener("click", function (e) {
   addSite();
@@ -116,25 +138,27 @@ function setDataToEdit(editIndex) {
 }
 
 function editSite(e) {
-  siteObj();
-  siteList.splice(indexBox, 1, siteObj());
-  siteLocalStorage();
-  showData();
-  submitBtn.classList.remove("d-none");
-  editBtn.classList.add("d-none");
-  clearInputs();
+  if (validation(bookmarkName) && validation(siteUrl)) {
+    siteObj();
+    siteList.splice(indexBox, 1, siteObj());
+    siteLocalStorage();
+    showData();
+    submitBtn.classList.remove("d-none");
+    editBtn.classList.add("d-none");
+    clearInputs();
+  } else {
+    notValid();
+  }
 }
-
 editBtn.addEventListener("click", function (e) {
   editSite(e);
 });
 
 // Validation
-function Validation(el) {
+function validation(el) {
   var regex = {
-    bookmarkName: /^\w{1,8}$/,
-    siteUrl:
-      /^((https?\:\/\/)?(www\.)?)?.{1,}(\.[a-zA-Z0-9]{2,})(\/?.{2,})?$/gm,
+    bookmarkName: /^\w{1,15}$/,
+    siteUrl: /^(https?:\/\/)?(www\.)?[\w\-]+(\.[\w\-]+)+([\/\w\-\.\?=&]*)?$/gm,
   };
   if (regex[el.id].test(el.value)) {
     el.classList.add("is-valid");
@@ -148,5 +172,18 @@ function Validation(el) {
 }
 
 document.addEventListener("input", function (e) {
-  Validation(e.target);
+  validation(e.target);
 });
+
+function notValid() {
+  if (
+    (!validation(siteUrl) && !validation(bookmarkName)) ||
+    !validation(bookmarkName)
+  ) {
+    alertBox.classList.replace("d-none", "d-block");
+  } else {
+    modal.classList.add("show");
+    modal.style.display = "block";
+    alertBox.classList.replace("d-block", "d-none");
+  }
+}
