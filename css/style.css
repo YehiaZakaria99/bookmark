@@ -112,6 +112,8 @@ td{
     color: var(--hover-color) !important;
 }
 
-.visit-btn{
+.visit-btn,
+.del-btn,
+.edit-btn{
     width: 85px;
 }

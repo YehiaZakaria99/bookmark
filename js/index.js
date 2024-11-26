@@ -66,11 +66,11 @@ function showData() {
                     Visit
                     </a>
                   </td>
-                  <td><button class="btn btn-danger py-1" onclick="delSite(${i})">
+                  <td><button class="del-btn btn btn-danger py-1 px-1" onclick="delSite(${i})">
                   <i class="fa-solid fa-trash-can"></i>
                   Delete
                   </button></td>
-                  <td><button class="btn btn-outline-warning py-1" onclick="setDataToEdit(${i})">
+                  <td><button class="edit-btn btn btn-outline-warning py-1 px-1" onclick="setDataToEdit(${i})">
                   <i class="fa-solid fa-pen-to-square"></i>
                   Edit
                   </button></td>
